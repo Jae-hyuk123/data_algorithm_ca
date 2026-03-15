@@ -8,7 +8,7 @@ package com.mycompany.smart_parking_app;
  *
  * @author ABC
  */
-public class Smart_parking_app {
+public class SmartParkingApp {
 
     public static void main(String[] args) {
         SmartParkingAppGUI mygui = new SmartParkingAppGUI();
