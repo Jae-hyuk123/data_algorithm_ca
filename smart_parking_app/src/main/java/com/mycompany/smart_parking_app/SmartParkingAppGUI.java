@@ -11,12 +11,22 @@ package com.mycompany.smart_parking_app;
 public class SmartParkingAppGUI extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SmartParkingAppGUI.class.getName());
-
+    ParkingManager myParkingManager = new ParkingManager();
+    
+    
     /**
      * Creates new form SmartParkingAppGUI
      */
     public SmartParkingAppGUI() {
         initComponents();
+        availableSpotCounts();
+        
+        
+        // make these field uneditable
+        jTextFieldForAvailabeNormalParkingSpaces.setEditable(false);
+        jTextFieldForAvailabeNormalParkingSpaces.setFocusable(false);
+        jTextFieldForAvailablePriorityParkingSpaces.setEditable(false);
+        jTextFieldForAvailablePriorityParkingSpaces.setFocusable(false);
     }
 
     /**
@@ -55,6 +65,12 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         jLabel1.setText("Smart Parking App");
 
         jLabel2.setText("Plate Number:");
+
+        jTextFieldForPlateNumber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldForPlateNumberActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Car Type:");
 
@@ -95,6 +111,17 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         jRadioButtonForParkingTypePriority.setText("Priority");
 
         jButtonForSubmit.setText("Submit");
+        jButtonForSubmit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonForSubmitActionPerformed(evt);
+            }
+        });
+
+        jTextFieldForAvailabeNormalParkingSpaces.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldForAvailabeNormalParkingSpacesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -187,6 +214,39 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonForDisabilityActionPerformed
 
+    private void jTextFieldForPlateNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldForPlateNumberActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldForPlateNumberActionPerformed
+
+    private void jButtonForSubmitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForSubmitActionPerformed
+        // TODO add your handling code here:
+        String plateNumber = jTextFieldForPlateNumber.getText();
+        boolean disability = jRadioButtonForDisability.isSelected();
+        
+        // check car type
+        if(jRadioButtonForElectronic.isSelected()) {
+            ElectronicVehicle temp = new ElectronicVehicle(plateNumber, disability, "electronic");
+            
+        }
+        else if(jRadioButtonForNonElectronic.isSelected()) {
+            NonElectronicVehicle temp = new NonElectronicVehicle(plateNumber, disability, "non-electronic");
+            
+        }
+    }//GEN-LAST:event_jButtonForSubmitActionPerformed
+
+    private void jTextFieldForAvailabeNormalParkingSpacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldForAvailabeNormalParkingSpacesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldForAvailabeNormalParkingSpacesActionPerformed
+
+    
+    private void availableSpotCounts() {
+        int normalParking = myParkingManager.getAvailabeNormalParkingSpots();
+        int priorityParking = myParkingManager.getAvaiablePriorityParkingSpots();
+        
+        jTextFieldForAvailabeNormalParkingSpaces.setText(String.valueOf(normalParking));
+        jTextFieldForAvailablePriorityParkingSpaces.setText(String.valueOf(priorityParking));
+    }
+    
     /**
      * @param args the command line arguments
      */

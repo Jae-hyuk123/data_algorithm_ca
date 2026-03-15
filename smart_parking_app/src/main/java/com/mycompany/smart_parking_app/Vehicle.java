@@ -11,6 +11,13 @@ package com.mycompany.smart_parking_app;
 abstract class Vehicle {
     protected String plateNumber;
     protected boolean isDisabled;
+    protected String carType;
+    
+    public Vehicle(String plateNumber, boolean isDisabled, String carType){
+        this.plateNumber = plateNumber;
+        this.isDisabled = isDisabled;
+        this.carType = carType;
+    }
     
     public abstract int getPriorityLevel();
     

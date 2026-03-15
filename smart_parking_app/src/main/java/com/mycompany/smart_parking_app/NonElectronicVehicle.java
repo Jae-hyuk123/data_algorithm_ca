@@ -10,6 +10,9 @@ package com.mycompany.smart_parking_app;
  */
 public class NonElectronicVehicle extends Vehicle {
     
+    public NonElectronicVehicle(String plateNumber, boolean isDisabled, String carType){
+        super(plateNumber, isDisabled, carType);
+    }
     
     @Override
     public int getPriorityLevel(){
