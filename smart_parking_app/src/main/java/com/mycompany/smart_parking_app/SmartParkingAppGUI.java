@@ -58,6 +58,10 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         jButtonForSubmit = new javax.swing.JButton();
         jTextFieldForAvailabeNormalParkingSpaces = new javax.swing.JTextField();
         jTextFieldForAvailablePriorityParkingSpaces = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaForDisplaying = new javax.swing.JTextArea();
+        jButtonForListOfNormalParking = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,49 +127,72 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
             }
         });
 
+        jTextAreaForDisplaying.setColumns(20);
+        jTextAreaForDisplaying.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaForDisplaying);
+
+        jButtonForListOfNormalParking.setText("list of normarl parking");
+        jButtonForListOfNormalParking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonForListOfNormalParkingActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("list of priority parking");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(329, 329, 329)
+                .addComponent(jButtonForListOfNormalParking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(24, 24, 24))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(163, 163, 163)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldForPlateNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jRadioButtonForElectronic)
+                            .addComponent(jRadioButtonForDisability, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldForPlateNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButtonForElectronic)
-                                    .addComponent(jRadioButtonForDisability, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButtonForNonDisability, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jRadioButtonForNonElectronic, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButtonForParkingTypeNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonForSubmit)
-                                    .addComponent(jRadioButtonForParkingTypePriority, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jRadioButtonForNonDisability, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jRadioButtonForNonElectronic, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jRadioButtonForParkingTypeNormal, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonForSubmit)
+                            .addComponent(jRadioButtonForParkingTypePriority, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldForAvailabeNormalParkingSpaces, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldForAvailablePriorityParkingSpaces, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(jTextFieldForAvailablePriorityParkingSpaces, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldForAvailabeNormalParkingSpaces, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane1)
+                        .addGap(24, 24, 24))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,19 +215,26 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
                         .addComponent(jTextFieldForAvailablePriorityParkingSpaces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButtonForDisability)
-                        .addComponent(jRadioButtonForNonDisability)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButtonForParkingTypeNormal)
-                        .addComponent(jRadioButtonForParkingTypePriority)))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonForSubmit)
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jRadioButtonForDisability)
+                                .addComponent(jRadioButtonForNonDisability)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jRadioButtonForParkingTypeNormal)
+                                .addComponent(jRadioButtonForParkingTypePriority)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonForSubmit))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonForListOfNormalParking)
+                    .addComponent(jButton2))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
@@ -222,21 +256,35 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String plateNumber = jTextFieldForPlateNumber.getText();
         boolean disability = jRadioButtonForDisability.isSelected();
+        Vehicle temp = null;
         
         // check car type
         if(jRadioButtonForElectronic.isSelected()) {
-            ElectronicVehicle temp = new ElectronicVehicle(plateNumber, disability, "electronic");
-            
+            temp = new ElectronicVehicle(plateNumber, disability, "electronic");
         }
         else if(jRadioButtonForNonElectronic.isSelected()) {
-            NonElectronicVehicle temp = new NonElectronicVehicle(plateNumber, disability, "non-electronic");
+            temp = new NonElectronicVehicle(plateNumber, disability, "non-electronic");
+        }
+        
+        // check parking type
+        if(jRadioButtonForParkingTypeNormal.isSelected()) {
+            myParkingManager.normalEnqueue(temp);
+        }
+        else if(jRadioButtonForParkingTypePriority.isSelected()) {
             
         }
+        
+        availableSpotCounts();
     }//GEN-LAST:event_jButtonForSubmitActionPerformed
 
     private void jTextFieldForAvailabeNormalParkingSpacesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldForAvailabeNormalParkingSpacesActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldForAvailabeNormalParkingSpacesActionPerformed
+
+    private void jButtonForListOfNormalParkingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForListOfNormalParkingActionPerformed
+        // TODO add your handling code here:
+        jTextAreaForDisplaying.setText(myParkingManager.getDetailedInformationOfReservedParkingSpots());
+    }//GEN-LAST:event_jButtonForListOfNormalParkingActionPerformed
 
     
     private void availableSpotCounts() {
@@ -276,6 +324,8 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupForCarType;
     private javax.swing.ButtonGroup buttonGroupForDisability;
     private javax.swing.ButtonGroup buttonGroupForParkingType;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonForListOfNormalParking;
     private javax.swing.JButton jButtonForSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -290,6 +340,8 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonForNonElectronic;
     private javax.swing.JRadioButton jRadioButtonForParkingTypeNormal;
     private javax.swing.JRadioButton jRadioButtonForParkingTypePriority;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextAreaForDisplaying;
     private javax.swing.JTextField jTextFieldForAvailabeNormalParkingSpaces;
     private javax.swing.JTextField jTextFieldForAvailablePriorityParkingSpaces;
     private javax.swing.JTextField jTextFieldForPlateNumber;

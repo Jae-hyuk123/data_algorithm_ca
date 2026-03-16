@@ -35,7 +35,7 @@ public class ParkingSpot {
         this.isAvailable = true;
     }
     
-    
+    // getter
     public String getSpotType() {
         return spotType;
     }
@@ -43,4 +43,15 @@ public class ParkingSpot {
     public boolean getIsAvaialbe() {
         return isAvailable;
     }
+    
+    public Vehicle getAssgignedVehicle() {
+        return AssgignedVehicle;
+    }
+    
+    // setter
+    public void setAssgignedVehicle(Vehicle AssgignedVehicle) {
+        this.AssgignedVehicle = AssgignedVehicle;
+        isAvailable = false;
+    }
+    
 }

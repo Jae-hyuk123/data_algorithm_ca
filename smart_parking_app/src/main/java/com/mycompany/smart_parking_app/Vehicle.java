@@ -19,6 +19,10 @@ abstract class Vehicle {
         this.carType = carType;
     }
     
-    public abstract int getPriorityLevel();
+    // getter
+    public String getPlateNumber() {
+        return plateNumber;
+    }
     
+    public abstract int getPriorityLevel();
 }
