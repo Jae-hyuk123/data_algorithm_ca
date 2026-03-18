@@ -13,7 +13,7 @@ public class ParkingSpot {
     private int spotId;
     private String spotType;    // normal or priority
     private boolean isAvailable;
-    private Vehicle AssgignedVehicle;
+    private Vehicle AssignedVehicle;
     
     // constructor
     public ParkingSpot(int spotId, String spotType) {
@@ -25,13 +25,13 @@ public class ParkingSpot {
     
     // add
     public void assignVehicle(Vehicle vehicle) {
-        this.AssgignedVehicle = vehicle;
+        this.AssignedVehicle = vehicle;
         this.isAvailable = false;
     }
     
     // remove
     public void removeVehicle() {
-        this.AssgignedVehicle = null;
+        this.AssignedVehicle = null;
         this.isAvailable = true;
     }
     
@@ -44,14 +44,21 @@ public class ParkingSpot {
         return isAvailable;
     }
     
-    public Vehicle getAssgignedVehicle() {
-        return AssgignedVehicle;
+    public Vehicle getAssignedVehicle() {
+        return AssignedVehicle;
+    }
+    
+    public int getSpotId() {
+        return spotId;
     }
     
     // setter
-    public void setAssgignedVehicle(Vehicle AssgignedVehicle) {
-        this.AssgignedVehicle = AssgignedVehicle;
-        isAvailable = false;
+    public void setAssgignedVehicle(Vehicle AssignedVehicle) {
+        this.AssignedVehicle = AssignedVehicle;
     }
     
-}
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+    
+}   

@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 public class ParkingManager {
     // variables
     private ArrayList<ParkingSpot> parkingSpots;
-    private ArrayList<Vehicle> normalWaitingQueue;
+    NormalWaitingQueue myNormalWaitingQueue;
+    
     private int numberOfNormalParkingSpots;
     private int numberOfPriorityParkingSpots;
     
@@ -22,8 +23,9 @@ public class ParkingManager {
     // constructor
     public ParkingManager() {
         parkingSpots = new ArrayList<>();
+        myNormalWaitingQueue = new NormalWaitingQueue();
         
-        numberOfNormalParkingSpots = 70;
+        numberOfNormalParkingSpots = 3;
         numberOfPriorityParkingSpots = 30;
         
         // 70 normal parking spots 
@@ -36,6 +38,7 @@ public class ParkingManager {
             parkingSpots.add(new ParkingSpot(i, "priority"));
         }
     }
+    
     
     // get the number of avaialbe normal parking spots
     public int getAvailabeNormalParkingSpots() {
@@ -66,6 +69,7 @@ public class ParkingManager {
         return count;
     }
     
+    
     // get the detailed information of reserved parking spots
     public String getDetailedInformationOfReservedParkingSpots() {
         String information = "";
@@ -73,13 +77,13 @@ public class ParkingManager {
         
         for(int i=0; i<numberOfNormalParkingSpots; i++) {
             if(parkingSpots.get(i).getSpotType().equals("normal") && !parkingSpots.get(i).getIsAvaialbe()) {
-                information += (count+1) + ". plate number: " + parkingSpots.get(i).getAssgignedVehicle().getPlateNumber() + "\n";
+                information += "parking spot " + (count+1) + " is secured by " + parkingSpots.get(i).getAssignedVehicle().getPlateNumber() + "\n";
                 count++;
             }
             
         }
         
-        information += "There are " + (numberOfNormalParkingSpots - count) + " spots availabe\n";
+        information += "There are " + (numberOfNormalParkingSpots - count) + " spots availabe\n\n" + "number of waiting people : " + myNormalWaitingQueue.sizeForNormalWaiting() + "\n";
         
         return information;
     }
@@ -88,12 +92,16 @@ public class ParkingManager {
     // add normal parking
     public void normalEnqueue(Vehicle vehicle) {
         if(getAvailabeNormalParkingSpots() == 0) {
-            JOptionPane.showMessageDialog(null, "No available parking spots");
+            JOptionPane.showMessageDialog(null, "Since we don't have any parking spots, you will be in the waiting queue\n"
+                    + "If another driver cancel their reservation, you might take that place\n");
+            
+            myNormalWaitingQueue.enqueueForNormalWaiting(vehicle);        
         }
         else {
             for(int i=0; i<numberOfNormalParkingSpots; i++) {
                 if(parkingSpots.get(i).getSpotType().equals("normal") && parkingSpots.get(i).getIsAvaialbe()) {
                     parkingSpots.get(i).setAssgignedVehicle(vehicle);
+                    parkingSpots.get(i).setIsAvailable(false);
                     JOptionPane.showMessageDialog(null, "You successfully made a reservation!");
                     break;
                 }
@@ -101,5 +109,62 @@ public class ParkingManager {
         }
     }
     
+    
+    // search reserved car
+    public String searchForNormalParking(String plateNumber) {
+        String temp = "";
+        for(int i=0; i<numberOfNormalParkingSpots; i++) {
+            if(parkingSpots.get(i).getSpotType().equals("normal") && 
+                    parkingSpots.get(i).getAssignedVehicle() != null &&
+                    parkingSpots.get(i).getAssignedVehicle().getPlateNumber().equals(plateNumber)) {
+                temp = "plate number: " + plateNumber + "\n" + "car type: "  + parkingSpots.get(i).getAssignedVehicle().getCarType() + "\n" + "disablility : " 
+                        + parkingSpots.get(i).getAssignedVehicle().getIsDisabled() + "\n\n" + 
+                        "Your parking spot: " + parkingSpots.get(i).getSpotId() + "\n\nYou successfully made a reservation\n";
+                
+                
+                return temp;
+            }
+        }
+        
+        if(myNormalWaitingQueue.sizeForNormalWaiting()>0) {
+            temp = myNormalWaitingQueue.searchNormalWaiting(plateNumber);
+        }
+        
+        return temp;
+    }
+    
+    
+    // delete
+    public String deleteForNormalParking(String plateNumber) {
+        String temp = "";
+        for(int i=0; i<numberOfNormalParkingSpots; i++) {
+            if(parkingSpots.get(i).getSpotType().equals("normal") && 
+                    parkingSpots.get(i).getAssignedVehicle() != null &&
+                    parkingSpots.get(i).getAssignedVehicle().getPlateNumber().equals(plateNumber)) {
+                
+                temp = "plate number: " + plateNumber + "\n" + "car type: "  + parkingSpots.get(i).getAssignedVehicle().getCarType() + "\n" + "disablility : " 
+                        + parkingSpots.get(i).getAssignedVehicle().getIsDisabled() + "\n\n" + 
+                        "Your parking spot: " + parkingSpots.get(i).getSpotId() + "\n\nYour reservation has been cancelled.\n";
+                
+                
+                Vehicle tempVehicle = (Vehicle) myNormalWaitingQueue.dequeueForNormalWaiting();
+                if(tempVehicle!=null) {
+                    parkingSpots.get(i).setAssgignedVehicle(tempVehicle);
+                }
+                else {
+                    parkingSpots.get(i).setAssgignedVehicle(null);
+                    parkingSpots.get(i).setIsAvailable(true);
+                }
+                return temp;
+            }
+        }
+        
+        if(myNormalWaitingQueue.sizeForNormalWaiting()>0) {
+            temp = myNormalWaitingQueue.deleteNormalWaiting(plateNumber);
+        }
+        
+        
+        return temp;
+    }
     
 }

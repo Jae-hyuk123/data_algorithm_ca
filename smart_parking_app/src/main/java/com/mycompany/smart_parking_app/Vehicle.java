@@ -24,5 +24,13 @@ abstract class Vehicle {
         return plateNumber;
     }
     
+    public String getCarType() {
+        return carType;
+    }
+    
+    public boolean getIsDisabled() {
+        return isDisabled;
+    }
+    
     public abstract int getPriorityLevel();
 }

@@ -31,68 +31,75 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="329" max="-2" attributes="0"/>
-              <Component id="jButtonForListOfNormalParking" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-          </Group>
           <Group type="102" attributes="0">
               <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" pref="162" max="-2" attributes="0"/>
               <EmptySpace min="37" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel2" min="-2" pref="84" max="-2" attributes="0"/>
-                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jTextFieldForPlateNumber" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jRadioButtonForElectronic" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButtonForDisability" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jRadioButtonForNonDisability" min="-2" pref="98" max="-2" attributes="0"/>
-                          <Component id="jRadioButtonForNonElectronic" min="-2" pref="98" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jRadioButtonForParkingTypeNormal" min="-2" pref="70" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jButtonForSearch" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonForSubmit" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButtonForParkingTypePriority" min="-2" pref="70" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButtonforRemove" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="jButtonForListOfNormalParking" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
-              </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jLabel5" max="32767" attributes="0"/>
-                          <Component id="jLabel6" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jLabel2" min="-2" pref="84" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jLabel7" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel4" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextFieldForAvailablePriorityParkingSpaces" min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="jTextFieldForAvailabeNormalParkingSpaces" min="-2" pref="49" max="-2" attributes="0"/>
+                          <Component id="jTextFieldForPlateNumber" alignment="0" min="-2" pref="126" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jRadioButtonForElectronic" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButtonForDisability" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jRadioButtonForNonDisability" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="jRadioButtonForNonElectronic" min="-2" pref="98" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jRadioButtonForParkingTypeNormal" min="-2" pref="70" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonForSubmit" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jRadioButtonForParkingTypePriority" min="-2" pref="70" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel5" max="32767" attributes="0"/>
+                                  <Component id="jLabel6" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jTextFieldForAvailablePriorityParkingSpaces" min="-2" pref="49" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldForAvailabeNormalParkingSpaces" min="-2" pref="49" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -147,6 +154,8 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonForListOfNormalParking" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonForSearch" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonforRemove" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="44" max="32767" attributes="0"/>
           </Group>
@@ -293,6 +302,22 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="list of priority parking"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonForSearch">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Search"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonForSearchActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButtonforRemove">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Remove"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonforRemoveActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
