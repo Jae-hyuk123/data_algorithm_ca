@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author ABC
  */
-public class PriorityParkingQueue {
+public class PriorityParkingQueue implements PriorityInterface{
     
     private ArrayList<PriroityQueueElement> myPriorityQueue;
 
@@ -18,14 +18,17 @@ public class PriorityParkingQueue {
         myPriorityQueue = new ArrayList<PriroityQueueElement>();
     }
     
-     public boolean isEmptyForPriorityQueue() {
+    @Override
+    public boolean isEmptyForPriorityQueue() {
         return myPriorityQueue.isEmpty();
     }
      
+    @Override
     public int sizeForPriorityQueue() {
         return myPriorityQueue.size();
     }
     
+    @Override
     public void enqueueForPriorityQueue(int priorityKey, Object vehicle) {
         int index;
         PriroityQueueElement temp = new PriroityQueueElement(priorityKey, vehicle);
@@ -39,7 +42,8 @@ public class PriorityParkingQueue {
         }
     }
     
-    private int findInsertPosition(int iNewPriorityKey) {
+    @Override
+    public int findInsertPosition(int iNewPriorityKey) {
         PriroityQueueElement curElement;
         
         int index;
@@ -54,10 +58,42 @@ public class PriorityParkingQueue {
         return index;
     }
     
+    @Override
     public Object dequeueForPriorityQueue() {
         return myPriorityQueue.remove(0);
     }
     
+    @Override
+    public String deletePriorityQueue(String plateNumber) {
+        String message = "";
+        for(int i=0; i<myPriorityQueue.size(); i++) {
+            Vehicle temp = (Vehicle) myPriorityQueue.get(i).getVehicle();
+            
+            if(temp.getPlateNumber().equals(plateNumber)) {
+                message = "Your reservation has been canceled.\n";
+                
+                myPriorityQueue.remove(i);
+                break;
+            }
+        }
+        return message;
+    }
+    
+    @Override
+    public String searchPriorityQueue(String plateNumber, int numberOfPriorityParkingSpots) {
+        String message = "";
+        for(int i=0; i<myPriorityQueue.size(); i++) {
+            Vehicle temp = (Vehicle) myPriorityQueue.get(i).getVehicle();
+            
+            if(temp.getPlateNumber().equals(plateNumber)) {
+                message = "You are currently in number " + ((i+1)-numberOfPriorityParkingSpots) + " in line for priority park.";
+                break;
+            }
+        }
+        return message;
+    }
+    
+    @Override
     public ArrayList<PriroityQueueElement> getQueue() {
         return myPriorityQueue;
     }

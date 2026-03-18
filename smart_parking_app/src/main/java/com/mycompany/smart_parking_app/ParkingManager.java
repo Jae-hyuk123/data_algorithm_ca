@@ -15,7 +15,7 @@ public class ParkingManager {
     // variables
     private ArrayList<ParkingSpot> parkingSpots;
     NormalWaitingQueueInterface myNormalWaitingQueue;
-    PriorityParkingQueue myPriorityParking;
+    PriorityInterface myPriorityParking;
     
     private int numberOfNormalParkingSpots;
     private int numberOfPriorityParkingSpots;
@@ -93,6 +93,16 @@ public class ParkingManager {
     
     // add normal parking
     public void normalEnqueue(Vehicle vehicle) {
+        if(!searchForNormalParking(vehicle.getPlateNumber()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "You alread made a reservation");
+            return;
+        }
+        
+        if(!searchForPriorityParking(vehicle.getPlateNumber()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "You alread made a reservation");
+            return;
+        }
+        
         if(getAvailabeNormalParkingSpots() == 0) {
             JOptionPane.showMessageDialog(null, "Since we don't have any parking spots, you will be in the waiting queue\n"
                     + "If another driver cancel their reservation, you might take that place\n");
@@ -171,6 +181,16 @@ public class ParkingManager {
     
     
     public void priorityEnqueue(Vehicle vehicle) {
+        if(!searchForNormalParking(vehicle.getPlateNumber()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "You alread made a reservation");
+            return;
+        }
+        
+        if(!searchForPriorityParking(vehicle.getPlateNumber()).isEmpty()) {
+            JOptionPane.showMessageDialog(null, "You alread made a reservation");
+            return;
+        }
+        
         int priorityKey = vehicle.getPriorityKey();
         
         myPriorityParking.enqueueForPriorityQueue(priorityKey, vehicle);
@@ -190,32 +210,7 @@ public class ParkingManager {
                 parkingSpots.get(i).setIsAvailable(true);
             }
         }
-        
-        
-        /*
-        for(int i=numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
-            PriroityQueueElement temp = (PriroityQueueElement) myPriorityParking.getPrioritQueueElement();
-            Vehicle tempVehicle = (Vehicle) temp.getVehicle();
-            
-            parkingSpots.get(i).setAssgignedVehicle(tempVehicle);
-            JOptionPane.showMessageDialog(null, "You successfully made a reservation!\n");
-            break;
-        }
-        */
-        /*
-        for(int i=numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
-            if(parkingSpots.get(i).getSpotType().equals("priority")) {
-                PriroityQueueElement temp = (PriroityQueueElement) myPriorityParking.getPrioritQueueElement();
-                Vehicle tempVehicle = (Vehicle) temp.getVehicle();
-                        
-                parkingSpots.get(i).setAssgignedVehicle(tempVehicle);
-                parkingSpots.get(i).setIsAvailable(false);
-                JOptionPane.showMessageDialog(null, "You successfully made a reservation!\n");
-                break;
-            }
-            
-        }
-        */
+        JOptionPane.showMessageDialog(null, "You successfully made a reservation!");
     }
     
     public String getDetailedInformationOfPriorityParkingSpots() {
@@ -224,7 +219,7 @@ public class ParkingManager {
         
         for(int i=numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
             if(parkingSpots.get(i).getSpotType().equals("priority") && !parkingSpots.get(i).getIsAvaialbe()) {
-                information += "parking spot " + (count+1) + " is secured by " + parkingSpots.get(i).getAssignedVehicle().getPlateNumber() + "\n";
+                information += "parking spot " + (numberOfNormalParkingSpots + count+1) + " is secured by " + parkingSpots.get(i).getAssignedVehicle().getPlateNumber() + "\n";
                 count++;
             }
             
@@ -233,5 +228,54 @@ public class ParkingManager {
         information += "There are " + (numberOfPriorityParkingSpots - count) + " spots availabe\n\n";
         
         return information;
+    }
+    
+    public String deletePriorityQueue(String plateNumber) {
+        String message = myPriorityParking.deletePriorityQueue(plateNumber);
+        
+        if(message == "") {
+            return message;
+        }
+        
+        else {
+            ArrayList<PriroityQueueElement> list = myPriorityParking.getQueue();
+
+            int j=0;
+            for(int i = numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
+
+                if(j < list.size()) {
+                    parkingSpots.get(i).setAssgignedVehicle((Vehicle) list.get(j).getVehicle());
+                    parkingSpots.get(i).setIsAvailable(false);
+                    j++;
+                }
+                else {
+                    parkingSpots.get(i).setAssgignedVehicle(null);
+                    parkingSpots.get(i).setIsAvailable(true);
+                }
+            }
+            
+            return "Your reservation has been cancelled.";
+        }
+    }
+    
+    public String searchForPriorityParking(String plateNumber) {
+        String temp = "";
+        for(int i=numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
+            if(parkingSpots.get(i).getSpotType().equals("priority") && 
+                    parkingSpots.get(i).getAssignedVehicle() != null &&
+                    parkingSpots.get(i).getAssignedVehicle().getPlateNumber().equals(plateNumber)) {
+                temp = "plate number: " + plateNumber + "\n" + "car type: "  + parkingSpots.get(i).getAssignedVehicle().getCarType() + "\n" + "disablility : " 
+                        + parkingSpots.get(i).getAssignedVehicle().getIsDisabled() + "\n\n" + 
+                        "Your parking spot: " + parkingSpots.get(i).getSpotId() + "\n\nYou successfully made a reservation\n";
+                
+                break;
+            }
+            
+        String message = myPriorityParking.searchPriorityQueue(plateNumber, numberOfPriorityParkingSpots);
+        if(!message.isEmpty()) {
+            temp = message;
+        }
+    }
+        return temp;
     }
 }

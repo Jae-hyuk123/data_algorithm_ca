@@ -304,6 +304,8 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
             myParkingManager.priorityEnqueue(temp);
         }
         
+        
+        clear();
         availableSpotCounts();
     }//GEN-LAST:event_jButtonForSubmitActionPerformed
 
@@ -321,12 +323,16 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         String tempPlateNumber = JOptionPane.showInputDialog(null, "plate number:");
         
         String temp = myParkingManager.searchForNormalParking(tempPlateNumber);
+        String temp2 = myParkingManager.searchForPriorityParking(tempPlateNumber);
         
-        if(temp != ""){
+        if(temp.isEmpty() && temp2.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Such car with that plate number isn't reserved");
+        }
+        else if(!temp.isEmpty()){
             JOptionPane.showMessageDialog(null, temp);
         }
-        else {
-            JOptionPane.showMessageDialog(null, "Such car with that plate number isn't reserved for the normal park");
+        else if(!temp2.isEmpty()) {
+            JOptionPane.showMessageDialog(null, temp2);
         }
     }//GEN-LAST:event_jButtonForSearchActionPerformed
 
@@ -335,12 +341,17 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         String tempPlateNumber = JOptionPane.showInputDialog(null, "plate number:");
         
         String temp = myParkingManager.deleteForNormalParking(tempPlateNumber);
+        String temp2 = myParkingManager.deletePriorityQueue(tempPlateNumber);
         
-        if(temp != ""){
+        if(temp.isEmpty() && temp2.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Such car with that plate number isn't reserved for park");
+            
+        }
+        else if (!temp.isEmpty()) {
             JOptionPane.showMessageDialog(null, temp);
         }
-        else {
-            JOptionPane.showMessageDialog(null, "Such car with that plate number isn't reserved for the normal park");
+        else if (!temp2.isEmpty()) {
+            JOptionPane.showMessageDialog(null, temp2);
         }
         
         availableSpotCounts();
@@ -358,6 +369,13 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         
         jTextFieldForAvailabeNormalParkingSpaces.setText(String.valueOf(normalParking));
         jTextFieldForAvailablePriorityParkingSpaces.setText(String.valueOf(priorityParking));
+    }
+    
+    private void clear() {
+        jTextFieldForPlateNumber.setText("");
+        buttonGroupForCarType.clearSelection();
+        buttonGroupForDisability.clearSelection();
+        buttonGroupForParkingType.clearSelection();
     }
     
     /**

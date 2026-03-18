@@ -49,7 +49,7 @@ public class NormalWaitingQueue implements NormalWaitingQueueInterface {
         String message = "";
         for(int i=0; i<sizeForNormalWaiting(); i++) {
             if(plateNumber.equals(normalWaitingQueue.get(i).getPlateNumber())) {
-                message = "Your are currently number " + (i+1) + " in line.\n";
+                message = "Your are currently number " + (i+1) + " in line for normal park.\n";
                 break;
             }
         }
