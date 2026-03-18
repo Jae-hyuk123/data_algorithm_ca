@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author ABC
  */
-public class NormalWaitingQueue {
+public class NormalWaitingQueue implements NormalWaitingQueueInterface {
     private ArrayList<Vehicle> normalWaitingQueue;
     
     public NormalWaitingQueue() {
