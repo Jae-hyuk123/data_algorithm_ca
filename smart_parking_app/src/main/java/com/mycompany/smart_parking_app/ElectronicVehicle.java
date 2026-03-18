@@ -15,8 +15,4 @@ public class ElectronicVehicle extends Vehicle {
         super(plateNumber, isDisabled, carType);
     }
     
-    @Override
-    public int getPriorityLevel() {
-        return 0;   // need to be fixed
-    }
 }

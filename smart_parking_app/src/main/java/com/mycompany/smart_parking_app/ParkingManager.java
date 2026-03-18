@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 public class ParkingManager {
     // variables
     private ArrayList<ParkingSpot> parkingSpots;
-    NormalWaitingQueue myNormalWaitingQueue;
+    NormalWaitingQueueInterface myNormalWaitingQueue;
+    PriorityParkingQueue myPriorityParking;
     
     private int numberOfNormalParkingSpots;
     private int numberOfPriorityParkingSpots;
@@ -24,9 +25,10 @@ public class ParkingManager {
     public ParkingManager() {
         parkingSpots = new ArrayList<>();
         myNormalWaitingQueue = new NormalWaitingQueue();
+        myPriorityParking = new PriorityParkingQueue();
         
-        numberOfNormalParkingSpots = 3;
-        numberOfPriorityParkingSpots = 30;
+        numberOfNormalParkingSpots = 5;
+        numberOfPriorityParkingSpots = 3;
         
         // 70 normal parking spots 
         for(int i=1; i<numberOfNormalParkingSpots+1; i++) {
@@ -167,4 +169,69 @@ public class ParkingManager {
         return temp;
     }
     
+    
+    public void priorityEnqueue(Vehicle vehicle) {
+        int priorityKey = vehicle.getPriorityKey();
+        
+        myPriorityParking.enqueueForPriorityQueue(priorityKey, vehicle);
+        
+        ArrayList<PriroityQueueElement> list = myPriorityParking.getQueue();
+        
+        int j=0;
+        for(int i = numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
+            
+            if(j < list.size()) {
+                parkingSpots.get(i).setAssgignedVehicle((Vehicle) list.get(j).getVehicle());
+                parkingSpots.get(i).setIsAvailable(false);
+                j++;
+            }
+            else {
+                parkingSpots.get(i).setAssgignedVehicle(null);
+                parkingSpots.get(i).setIsAvailable(true);
+            }
+        }
+        
+        
+        /*
+        for(int i=numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
+            PriroityQueueElement temp = (PriroityQueueElement) myPriorityParking.getPrioritQueueElement();
+            Vehicle tempVehicle = (Vehicle) temp.getVehicle();
+            
+            parkingSpots.get(i).setAssgignedVehicle(tempVehicle);
+            JOptionPane.showMessageDialog(null, "You successfully made a reservation!\n");
+            break;
+        }
+        */
+        /*
+        for(int i=numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
+            if(parkingSpots.get(i).getSpotType().equals("priority")) {
+                PriroityQueueElement temp = (PriroityQueueElement) myPriorityParking.getPrioritQueueElement();
+                Vehicle tempVehicle = (Vehicle) temp.getVehicle();
+                        
+                parkingSpots.get(i).setAssgignedVehicle(tempVehicle);
+                parkingSpots.get(i).setIsAvailable(false);
+                JOptionPane.showMessageDialog(null, "You successfully made a reservation!\n");
+                break;
+            }
+            
+        }
+        */
+    }
+    
+    public String getDetailedInformationOfPriorityParkingSpots() {
+        String information = "";
+        int count=0;
+        
+        for(int i=numberOfNormalParkingSpots; i<(numberOfNormalParkingSpots + numberOfPriorityParkingSpots); i++) {
+            if(parkingSpots.get(i).getSpotType().equals("priority") && !parkingSpots.get(i).getIsAvaialbe()) {
+                information += "parking spot " + (count+1) + " is secured by " + parkingSpots.get(i).getAssignedVehicle().getPlateNumber() + "\n";
+                count++;
+            }
+            
+        }
+        
+        information += "There are " + (numberOfPriorityParkingSpots - count) + " spots availabe\n\n";
+        
+        return information;
+    }
 }

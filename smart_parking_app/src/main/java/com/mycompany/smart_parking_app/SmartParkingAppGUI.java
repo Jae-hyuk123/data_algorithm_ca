@@ -143,6 +143,11 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         });
 
         jButton2.setText("list of priority parking");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButtonForSearch.setText("Search");
         jButtonForSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +301,7 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
             myParkingManager.normalEnqueue(temp);
         }
         else if(jRadioButtonForParkingTypePriority.isSelected()) {
-            
+            myParkingManager.priorityEnqueue(temp);
         }
         
         availableSpotCounts();
@@ -340,6 +345,11 @@ public class SmartParkingAppGUI extends javax.swing.JFrame {
         
         availableSpotCounts();
     }//GEN-LAST:event_jButtonforRemoveActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jTextAreaForDisplaying.setText(myParkingManager.getDetailedInformationOfPriorityParkingSpots());
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     private void availableSpotCounts() {
