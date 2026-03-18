@@ -12,7 +12,6 @@ abstract class Vehicle {
     protected String plateNumber;
     protected boolean isDisabled;
     protected String carType;
-    protected int priorityKye;
     
     public Vehicle(String plateNumber, boolean isDisabled, String carType){
         this.plateNumber = plateNumber;
